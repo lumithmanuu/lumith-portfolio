@@ -14,6 +14,8 @@ export type Project = {
   description: string;
   contribution: string;
   details?: { title: string; items: string[] };
+  additionalDetails?: { title: string; items: string[] }[];
+  statusNote?: string;
   technologies: string[];
   githubUrl?: string;
   liveDemoUrl?: string;
@@ -22,6 +24,36 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: 'ceylon-leaf',
+    title: 'Ceylon Leaf',
+    subtitle: 'Smart Tea Factory Supplier Analytics System',
+    type: 'Solo Full-Stack Project',
+    featured: true,
+    description: 'A full-stack tea supplier quality and payment management system designed around real tea-factory workflows. The system helps manage tea collections, supplier quality, payments, supplier history, dashboards, and reporting.',
+    contribution: 'Independently designed and developed the complete system, including the frontend, backend, database integration, business logic, authentication, validation, dashboards, and reporting features.',
+    details: {
+      title: 'Key features',
+      items: [
+        'Multi-grade tea collection recording',
+        'Automated payment calculations',
+        'Weighted quality scoring',
+        'Supplier history',
+        'Dashboards and reporting',
+        'JWT authentication',
+        'Server-side validation',
+      ],
+    },
+    technologies: ['React.js', 'NestJS', 'SQL Server'],
+    githubUrl: 'https://github.com/lumithmanuu/Tea-leaf-supplier-s-management-system',
+    images: [
+      { src: '/images/projects/ceylon-leaf/ceylon-dashboard.png', alt: 'Ceylon Leaf dashboard' },
+      { src: '/images/projects/ceylon-leaf/ceylon-suppliers.png', alt: 'Ceylon Leaf supplier management' },
+      { src: '/images/projects/ceylon-leaf/ceylon-reports.png', alt: 'Ceylon Leaf reports and payment analytics' },
+      { src: '/images/projects/ceylon-leaf/ceylon-quality-rating.png', alt: 'Ceylon Leaf grades and payment rates' },
+    ],
+    visual: 'leaf',
+  },
   {
     id: 'smart-credit',
     title: 'Smart Credit+',
@@ -58,34 +90,54 @@ export const projects: Project[] = [
     visual: 'credit',
   },
   {
-    id: 'ceylon-leaf',
-    title: 'Ceylon Leaf',
-    subtitle: 'Smart Tea Factory Supplier Analytics System',
-    type: 'Solo Full-Stack Project',
+    id: 'customer-churn',
+    title: 'Customer Churn Prediction',
+    subtitle: 'End-to-End Machine Learning Classification System',
+    type: 'Solo Machine Learning Project',
     featured: true,
-    description: 'A full-stack tea supplier quality and payment management system designed around real tea-factory workflows. The system helps manage tea collections, supplier quality, payments, supplier history, dashboards, and reporting.',
-    contribution: 'Independently designed and developed the complete system, including the frontend, backend, database integration, business logic, authentication, validation, dashboards, and reporting features.',
+    description: 'Developed an end-to-end machine learning system to predict whether a telecom customer is likely to churn based on demographic information, subscribed services, contract details, and billing information. The project covers the complete machine learning workflow including data cleaning, preprocessing, model comparison, evaluation, cross-validation, hyperparameter tuning, model interpretation, serialization, and deployment.',
+    contribution: 'Independently developed the complete machine learning workflow, including exploratory analysis, data cleaning, preprocessing, model training, model comparison, cross-validation, hyperparameter tuning, model interpretation, model serialization, and deployment. Built a reusable Scikit-learn Pipeline using StandardScaler, OneHotEncoder and ColumnTransformer, serialized the trained model using Joblib, and deployed it as an interactive Streamlit application for real-time churn prediction.',
     details: {
-      title: 'Key features',
+      title: 'Model development',
       items: [
-        'Multi-grade tea collection recording',
-        'Automated payment calculations',
-        'Weighted quality scoring',
-        'Supplier history',
-        'Dashboards and reporting',
-        'JWT authentication',
-        'Server-side validation',
+        'Dataset: Telco Customer Churn dataset with approximately 7,043 customer records.',
+        'Models evaluated: Logistic Regression, Decision Tree, Random Forest, and Gradient Boosting.',
+        'Evaluation: Accuracy, Precision, Recall, F1-score, Confusion Matrix, ROC-AUC, and cross-validation.',
+        'Hyperparameter tuning using GridSearchCV.',
+        'Final deployed model: Logistic Regression.',
+        'Final model performance: approximately 80% accuracy and approximately 0.84 ROC-AUC.',
       ],
     },
-    technologies: ['React.js', 'NestJS', 'SQL Server'],
-    githubUrl: 'https://github.com/lumithmanuu/Tea-leaf-supplier-s-management-system',
+    additionalDetails: [{
+      title: 'Key features',
+      items: [
+        'End-to-end classification workflow',
+        'Data cleaning and preprocessing',
+        'Stratified train-test split',
+        'StandardScaler',
+        'OneHotEncoder',
+        'ColumnTransformer',
+        'Scikit-learn Pipeline',
+        'Multiple model comparison',
+        'Overfitting analysis',
+        'Stratified cross-validation',
+        'GridSearchCV hyperparameter tuning',
+        'Model interpretation',
+        'Joblib model serialization',
+        'Real-time churn prediction',
+        'Churn probability output',
+        'Interactive Streamlit application',
+        'Public deployment',
+      ],
+    }],
+    technologies: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Streamlit', 'Matplotlib', 'Joblib', 'Jupyter Notebook', 'Git', 'GitHub'],
+    githubUrl: 'https://github.com/lumithmanuu/customer-churn-prediction',
+    liveDemoUrl: 'https://customer-churn-prediction-ido8cswunbdz6usubiutrz.streamlit.app',
     images: [
-      { src: '/images/projects/ceylon-leaf/ceylon-dashboard.png', alt: 'Ceylon Leaf dashboard' },
-      { src: '/images/projects/ceylon-leaf/ceylon-suppliers.png', alt: 'Ceylon Leaf supplier management' },
-      { src: '/images/projects/ceylon-leaf/ceylon-reports.png', alt: 'Ceylon Leaf reports and payment analytics' },
-      { src: '/images/projects/ceylon-leaf/ceylon-quality-rating.png', alt: 'Ceylon Leaf grades and payment rates' },
+      { src: '/images/projects/customer-churn/churn-app.png', alt: 'Customer Churn Prediction Streamlit application' },
     ],
-    visual: 'leaf',
+    visual: 'portfolio',
+    statusNote: 'Full-stack React + FastAPI version in progress.',
   },
   {
     id: 'lumith-portfolio',

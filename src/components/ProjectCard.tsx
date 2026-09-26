@@ -158,22 +158,24 @@ export default function ProjectCard({ project, index, reverse = false }: Project
           <p className="text-xs leading-[1.9] text-slate-300">{project.contribution}</p>
         </div>
 
-        {project.details && (
-          <details className="group/details mt-4 rounded-lg border border-sky-200/10 bg-slate-950/20">
+        {[...(project.details ? [project.details] : []), ...(project.additionalDetails ?? [])].map((details) => (
+          <details key={details.title} className="group/details mt-4 rounded-lg border border-sky-200/10 bg-slate-950/20">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-lg px-4 py-3 text-[11px] font-medium text-slate-300 transition-colors hover:text-cyan-200 [&::-webkit-details-marker]:hidden">
-              {project.details.title}<ChevronDown size={15} className="shrink-0 text-slate-400 transition-transform group-open/details:rotate-180" aria-hidden="true" />
+              {details.title}<ChevronDown size={15} className="shrink-0 text-slate-400 transition-transform group-open/details:rotate-180" aria-hidden="true" />
             </summary>
             <ul className="space-y-2 px-4 pb-4" role="list">
-              {project.details.items.map((item) => <li key={item} className="flex gap-2 text-xs leading-6 text-slate-400"><span className="mt-2.5 size-1 shrink-0 rounded-full bg-cyan-300/60" aria-hidden="true" />{item}</li>)}
+              {details.items.map((item) => <li key={item} className="flex gap-2 text-xs leading-6 text-slate-400"><span className="mt-2.5 size-1 shrink-0 rounded-full bg-cyan-300/60" aria-hidden="true" />{item}</li>)}
             </ul>
           </details>
-        )}
+        ))}
 
         <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${project.title} technologies`} role="list">
           {project.technologies.map((technology) => (
             <li key={technology} className="rounded-md border border-cyan-300/[0.12] bg-[#080d18]/70 px-2.5 py-1.5 text-[10px] leading-4 text-slate-300 transition-[border-color,background-color] hover:border-cyan-300/30 hover:bg-cyan-400/[0.05]">{technology}</li>
           ))}
         </ul>
+
+        {project.statusNote && <p className="mt-4 text-[11px] leading-5 text-slate-400">{project.statusNote}</p>}
 
         {(project.githubUrl || project.liveDemoUrl) && (
           <div className="mt-6 flex flex-wrap gap-3">
