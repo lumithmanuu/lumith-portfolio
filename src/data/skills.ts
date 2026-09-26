@@ -60,7 +60,9 @@ export const skills: SkillCategory[] = [
       { name: 'scikit-learn', icon: 'scikitlearn' },
       { name: 'Matplotlib', icon: 'matplotlib' },
       { name: 'Seaborn', icon: 'seaborn' },
-      { name: 'Jupyter', icon: 'jupyter' },
+      { name: 'Jupyter Notebook', icon: 'jupyter' },
+      { name: 'Streamlit', icon: 'streamlit' },
+      { name: 'Joblib', icon: 'joblib' },
     ],
   },
 ];

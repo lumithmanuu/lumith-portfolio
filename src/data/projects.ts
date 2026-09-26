@@ -25,36 +25,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: 'ceylon-leaf',
-    title: 'Ceylon Leaf',
-    subtitle: 'Smart Tea Factory Supplier Analytics System',
-    type: 'Solo Full-Stack Project',
-    featured: true,
-    description: 'A full-stack tea supplier quality and payment management system designed around real tea-factory workflows. The system helps manage tea collections, supplier quality, payments, supplier history, dashboards, and reporting.',
-    contribution: 'Independently designed and developed the complete system, including the frontend, backend, database integration, business logic, authentication, validation, dashboards, and reporting features.',
-    details: {
-      title: 'Key features',
-      items: [
-        'Multi-grade tea collection recording',
-        'Automated payment calculations',
-        'Weighted quality scoring',
-        'Supplier history',
-        'Dashboards and reporting',
-        'JWT authentication',
-        'Server-side validation',
-      ],
-    },
-    technologies: ['React.js', 'NestJS', 'SQL Server'],
-    githubUrl: 'https://github.com/lumithmanuu/Tea-leaf-supplier-s-management-system',
-    images: [
-      { src: '/images/projects/ceylon-leaf/ceylon-dashboard.png', alt: 'Ceylon Leaf dashboard' },
-      { src: '/images/projects/ceylon-leaf/ceylon-suppliers.png', alt: 'Ceylon Leaf supplier management' },
-      { src: '/images/projects/ceylon-leaf/ceylon-reports.png', alt: 'Ceylon Leaf reports and payment analytics' },
-      { src: '/images/projects/ceylon-leaf/ceylon-quality-rating.png', alt: 'Ceylon Leaf grades and payment rates' },
-    ],
-    visual: 'leaf',
-  },
-  {
     id: 'smart-credit',
     title: 'Smart Credit+',
     subtitle: 'Peer-to-Peer Lending Platform',
@@ -138,6 +108,36 @@ export const projects: Project[] = [
     ],
     visual: 'portfolio',
     statusNote: 'Full-stack React + FastAPI version in progress.',
+  },
+  {
+    id: 'ceylon-leaf',
+    title: 'Ceylon Leaf',
+    subtitle: 'Smart Tea Factory Supplier Analytics System',
+    type: 'Solo Full-Stack Project',
+    featured: true,
+    description: 'A full-stack tea supplier quality and payment management system designed around real tea-factory workflows. The system helps manage tea collections, supplier quality, payments, supplier history, dashboards, and reporting.',
+    contribution: 'Independently designed and developed the complete system, including the frontend, backend, database integration, business logic, authentication, validation, dashboards, and reporting features.',
+    details: {
+      title: 'Key features',
+      items: [
+        'Multi-grade tea collection recording',
+        'Automated payment calculations',
+        'Weighted quality scoring',
+        'Supplier history',
+        'Dashboards and reporting',
+        'JWT authentication',
+        'Server-side validation',
+      ],
+    },
+    technologies: ['React.js', 'NestJS', 'SQL Server'],
+    githubUrl: 'https://github.com/lumithmanuu/Tea-leaf-supplier-s-management-system',
+    images: [
+      { src: '/images/projects/ceylon-leaf/ceylon-dashboard.png', alt: 'Ceylon Leaf dashboard' },
+      { src: '/images/projects/ceylon-leaf/ceylon-suppliers.png', alt: 'Ceylon Leaf supplier management' },
+      { src: '/images/projects/ceylon-leaf/ceylon-reports.png', alt: 'Ceylon Leaf reports and payment analytics' },
+      { src: '/images/projects/ceylon-leaf/ceylon-quality-rating.png', alt: 'Ceylon Leaf grades and payment rates' },
+    ],
+    visual: 'leaf',
   },
   {
     id: 'lumith-portfolio',
