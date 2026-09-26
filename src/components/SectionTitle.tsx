@@ -10,9 +10,6 @@ type SectionTitleProps = {
 export default function SectionTitle({ title, label, description, id }: SectionTitleProps) {
   const reduceMotion = useReducedMotion();
 
-  // Preserve the simple headings in sections that are still placeholders.
-  if (!label && !description) return <h2 id={id}>{title}</h2>;
-
   return (
     <motion.header
       className="mb-10 max-w-3xl sm:mb-12"
