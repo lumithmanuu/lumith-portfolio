@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, Check, ChevronDown, Cpu, ExternalLink, Landmark, Leaf, Users } from 'lucide-react';
+import { ArrowUpRight, Check, ChevronDown, Cpu, ExternalLink, Landmark, Leaf, Monitor, Users } from 'lucide-react';
 import type { Project } from '../data/projects';
 
 type ProjectCardProps = {
@@ -9,8 +9,9 @@ type ProjectCardProps = {
   reverse?: boolean;
 };
 
-const visualIcons = { leaf: Leaf, credit: Landmark, hardware: Cpu };
+const visualIcons = { leaf: Leaf, credit: Landmark, hardware: Cpu, portfolio: Monitor };
 const visualBackgrounds = {
+  portfolio: 'bg-[radial-gradient(ellipse_at_25%_30%,rgba(8,145,178,0.17),transparent_65%),linear-gradient(145deg,#0a1b26,#080d18)]',
   leaf: 'bg-[radial-gradient(ellipse_at_25%_30%,rgba(8,145,178,0.17),transparent_65%),linear-gradient(145deg,#0a1b26,#080d18)]',
   credit: 'bg-[radial-gradient(ellipse_at_70%_35%,rgba(79,70,229,0.16),transparent_65%),linear-gradient(145deg,#0d152b,#080d18)]',
   hardware: 'bg-[radial-gradient(ellipse_at_40%_40%,rgba(56,189,248,0.1),transparent_65%),linear-gradient(145deg,#0d1c28,#080d18)]',

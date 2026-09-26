@@ -18,40 +18,10 @@ export type Project = {
   githubUrl?: string;
   liveDemoUrl?: string;
   images: ProjectImage[];
-  visual: 'leaf' | 'credit' | 'hardware';
+  visual: 'leaf' | 'credit' | 'hardware' | 'portfolio';
 };
 
 export const projects: Project[] = [
-  {
-    id: 'ceylon-leaf',
-    title: 'Ceylon Leaf',
-    subtitle: 'Smart Tea Factory Supplier Analytics System',
-    type: 'Solo Full-Stack Project',
-    featured: true,
-    description: 'A full-stack tea supplier quality and payment management system designed around real tea-factory workflows. The system helps manage tea collections, supplier quality, payments, supplier history, dashboards, and reporting.',
-    contribution: 'Independently designed and developed the complete system, including the frontend, backend, database integration, business logic, authentication, validation, dashboards, and reporting features.',
-    details: {
-      title: 'Key features',
-      items: [
-        'Multi-grade tea collection recording',
-        'Automated payment calculations',
-        'Weighted quality scoring',
-        'Supplier history',
-        'Dashboards and reporting',
-        'JWT authentication',
-        'Server-side validation',
-      ],
-    },
-    technologies: ['React.js', 'NestJS', 'SQL Server'],
-    githubUrl: 'https://github.com/lumithmanuu/Tea-leaf-supplier-s-management-system',
-    images: [
-      { src: '/images/projects/ceylon-leaf/ceylon-dashboard.png', alt: 'Ceylon Leaf dashboard' },
-      { src: '/images/projects/ceylon-leaf/ceylon-suppliers.png', alt: 'Ceylon Leaf supplier management' },
-      { src: '/images/projects/ceylon-leaf/ceylon-reports.png', alt: 'Ceylon Leaf reports and payment analytics' },
-      { src: '/images/projects/ceylon-leaf/ceylon-quality-rating.png', alt: 'Ceylon Leaf grades and payment rates' },
-    ],
-    visual: 'leaf',
-  },
   {
     id: 'smart-credit',
     title: 'Smart Credit+',
@@ -86,6 +56,52 @@ export const projects: Project[] = [
       { src: '/images/projects/smart-credit/smart-credit-ad-boosts.png', alt: 'Smart Credit Plus ad boost management', supplementary: true },
     ],
     visual: 'credit',
+  },
+  {
+    id: 'ceylon-leaf',
+    title: 'Ceylon Leaf',
+    subtitle: 'Smart Tea Factory Supplier Analytics System',
+    type: 'Solo Full-Stack Project',
+    featured: true,
+    description: 'A full-stack tea supplier quality and payment management system designed around real tea-factory workflows. The system helps manage tea collections, supplier quality, payments, supplier history, dashboards, and reporting.',
+    contribution: 'Independently designed and developed the complete system, including the frontend, backend, database integration, business logic, authentication, validation, dashboards, and reporting features.',
+    details: {
+      title: 'Key features',
+      items: [
+        'Multi-grade tea collection recording',
+        'Automated payment calculations',
+        'Weighted quality scoring',
+        'Supplier history',
+        'Dashboards and reporting',
+        'JWT authentication',
+        'Server-side validation',
+      ],
+    },
+    technologies: ['React.js', 'NestJS', 'SQL Server'],
+    githubUrl: 'https://github.com/lumithmanuu/Tea-leaf-supplier-s-management-system',
+    images: [
+      { src: '/images/projects/ceylon-leaf/ceylon-dashboard.png', alt: 'Ceylon Leaf dashboard' },
+      { src: '/images/projects/ceylon-leaf/ceylon-suppliers.png', alt: 'Ceylon Leaf supplier management' },
+      { src: '/images/projects/ceylon-leaf/ceylon-reports.png', alt: 'Ceylon Leaf reports and payment analytics' },
+      { src: '/images/projects/ceylon-leaf/ceylon-quality-rating.png', alt: 'Ceylon Leaf grades and payment rates' },
+    ],
+    visual: 'leaf',
+  },
+  {
+    id: 'lumith-portfolio',
+    title: 'Lumith Portfolio',
+    subtitle: 'Personal Developer Portfolio',
+    type: 'Personal Frontend Project',
+    featured: true,
+    description: 'A responsive personal portfolio showcasing my projects, technical skills, education, and leadership experience.',
+    contribution: 'Built the portfolio with reusable React components, data-driven project galleries, responsive layouts, and accessible navigation.',
+    technologies: ['React.js', 'TypeScript', 'Vite', 'Tailwind CSS', 'Motion'],
+    githubUrl: 'https://github.com/lumithmanuu/lumith-portfolio',
+    liveDemoUrl: 'https://lumith-portfolio.vercel.app',
+    images: [
+      { src: '/images/projects/lumith-portfolio/portfolio-home.png', alt: 'Lumith Manujaya personal portfolio homepage' },
+    ],
+    visual: 'portfolio',
   },
   {
     id: 'grim-reaper',
