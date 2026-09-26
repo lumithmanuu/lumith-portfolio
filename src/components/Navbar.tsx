@@ -81,7 +81,7 @@ export default function Navbar() {
         if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(false);
       }}>
       <div className="navbar-row">
-        <a href="#home" className="wordmark" aria-label="Lumith Manujaya home" onClick={() => setIsOpen(false)}>LM<span>.</span></a>
+        <a href="#home" className="wordmark" aria-label="Lumith Manujaya home" onClick={() => setIsOpen(false)}>Lumith</a>
         <div className="desktop-navigation">
           {navigation.map(([label, href]) => <a className="nav-link" key={href} href={href} aria-current={activeSection === href ? 'location' : undefined}>{label}</a>)}
         </div>

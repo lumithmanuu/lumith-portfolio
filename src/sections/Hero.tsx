@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ArrowDown, ArrowUpRight, Code2 } from 'lucide-react';
 import SocialLinks from '../components/SocialLinks';
 
-const roles = ['Software Engineer', 'Full-Stack Developer', 'IT Undergraduate'];
+const roles = ['Aspiring Software Engineer', 'AI/ML Enthusiast', 'IT Undergraduate'];
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
@@ -34,7 +34,7 @@ export default function Hero() {
           <motion.p className="hero-greeting" variants={entrance}>Hi, I'm</motion.p>
           <motion.h1 id="hero-name" className="hero-name" variants={entrance}>Lumith <span>Manujaya</span></motion.h1>
           <motion.div className="hero-role" variants={entrance}>
-            <span className="sr-only">Software Engineer, Full-Stack Developer, and IT Undergraduate</span>
+            <span className="sr-only">Aspiring Software Engineer, AI/ML Enthusiast, and IT Undergraduate</span>
             <span className="role-prefix" aria-hidden="true">&gt;_</span>
             <span className="role-text" aria-hidden="true">
               {roles.map((role) => <span className="role-measure" key={role}>{role}</span>)}
@@ -49,7 +49,7 @@ export default function Hero() {
             <span className="role-cursor" aria-hidden="true" />
           </motion.div>
           <motion.p className="hero-description" variants={entrance}>
-            Information Technology undergraduate at the <span>University of Moratuwa</span>, passionate about building practical software solutions and transforming real-world problems into reliable, user-focused applications.
+            Information Technology undergraduate at the <span>University of Moratuwa</span>, passionate about building practical software solutions, exploring AI/ML, and transforming real-world problems into reliable, user-focused applications.
           </motion.p>
           <motion.div className="hero-actions" variants={entrance}>
             <motion.a href="#projects" className="button button-primary" whileHover={reduceMotion ? undefined : { y: -3 }} whileTap={reduceMotion ? undefined : { scale: 0.98 }}>

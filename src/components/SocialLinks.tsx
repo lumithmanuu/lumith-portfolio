@@ -26,10 +26,10 @@ export default function SocialLinks({ variant = 'icons' }: SocialLinksProps) {
   const orderedLinks = isContact ? [...links.filter((link) => !link.external), ...links.filter((link) => link.external)] : links;
 
   return (
-    <div className={isContact ? 'flex flex-col gap-3' : 'social-links'}>
+    <div className={isContact ? 'flex flex-col gap-3 lg:gap-2' : 'social-links'}>
       {orderedLinks.map(({ title, value, label, href, icon, external }, index) => (
         <motion.a key={href} href={href}
-          className={isContact ? 'group/contact flex min-w-0 items-center gap-3.5 rounded-xl border border-sky-300/[0.13] bg-[rgba(12,20,35,0.65)] p-4 backdrop-blur-md transition-[border-color,box-shadow] duration-200 hover:border-cyan-400/35 hover:shadow-[0_4px_24px_rgba(34,211,238,0.05)]' : 'social-link'}
+          className={isContact ? 'group/contact flex min-w-0 items-center gap-3.5 rounded-xl border border-sky-300/[0.13] bg-[rgba(12,20,35,0.65)] p-4 lg:py-2.5 backdrop-blur-md transition-[border-color,box-shadow] duration-200 hover:border-cyan-400/35 hover:shadow-[0_4px_24px_rgba(34,211,238,0.05)]' : 'social-link'}
           aria-label={isContact ? `${title}: ${value}${external ? ' (opens in a new tab)' : ''}` : label} title={label}
           target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}
           initial={isContact && !reduceMotion ? { opacity: 0, y: 8 } : undefined}
