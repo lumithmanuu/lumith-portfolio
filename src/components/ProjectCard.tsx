@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, ChevronDown, Cpu, ExternalLink, Landmark, Leaf, Users } from 'lucide-react';
+import { ArrowUpRight, Check, ChevronDown, Cpu, ExternalLink, Landmark, Leaf, Users } from 'lucide-react';
 import type { Project } from '../data/projects';
 
 type ProjectCardProps = {
@@ -85,8 +85,9 @@ function ProjectGallery({ project }: { project: Project }) {
                   <li key={image.src} className="shrink-0">
                     <button type="button" onClick={() => setSelectedIndex(image.imageIndex)}
                       aria-label={`Show ${image.alt}`} aria-pressed={isSelected} aria-controls={`gallery-${project.id}`} title={image.alt}
-                      className={`block overflow-hidden rounded-md border-2 bg-[#050810] p-0.5 transition-[border-color,box-shadow,opacity] duration-200 focus-visible:outline-offset-2 ${supplementary ? 'h-11 w-14' : 'h-14 w-20'} ${isSelected ? 'border-cyan-300 opacity-100 shadow-[0_0_12px_rgba(34,211,238,0.15)]' : `border-slate-400/20 hover:border-cyan-300/60 hover:opacity-100 ${supplementary ? 'opacity-70' : 'opacity-85'}`}`}>
+                      className={`relative block overflow-hidden rounded-md border-2 bg-[#050810] p-0.5 transition-[border-color,box-shadow,opacity] duration-200 focus-visible:outline-offset-2 ${supplementary ? 'h-11 w-14' : 'h-14 w-20'} ${isSelected ? 'border-cyan-300 opacity-100 shadow-[0_0_12px_rgba(34,211,238,0.15)]' : `border-slate-400/20 hover:border-cyan-300/60 hover:opacity-100 ${supplementary ? 'opacity-70' : 'opacity-85'}`}`}>
                       <img src={image.src} alt="" loading="lazy" decoding="async" className="h-full w-full rounded-sm object-contain" />
+                      {isSelected && <span className="absolute right-0 bottom-0 rounded-tl bg-cyan-200 p-0.5 text-slate-950" aria-hidden="true"><Check size={12} strokeWidth={3} /></span>}
                     </button>
                   </li>
                 );

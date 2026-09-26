@@ -4,7 +4,7 @@ import { Send } from 'lucide-react';
 import SectionTitle from '../components/SectionTitle';
 import SocialLinks from '../components/SocialLinks';
 
-const inputClass = 'mt-2 block w-full min-w-0 rounded-lg border border-slate-400/20 bg-[#080d18]/80 px-3.5 py-3 text-sm leading-6 text-slate-100 transition-[border-color,box-shadow] duration-200 hover:border-slate-400/35 focus:border-cyan-400/60 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.08)] focus:outline-none';
+const inputClass = 'mt-2 block w-full min-w-0 rounded-lg border border-slate-400/20 bg-[#080d18]/80 px-3.5 py-3 text-base leading-6 text-slate-100 transition-[border-color,box-shadow] duration-200 sm:text-sm hover:border-slate-400/35 focus:border-cyan-400/60 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.08)] focus:outline-none';
 
 function validateRequiredField(event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) {
   const field = event.currentTarget;

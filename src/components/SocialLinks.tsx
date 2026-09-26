@@ -35,8 +35,8 @@ export default function SocialLinks({ variant = 'icons' }: SocialLinksProps) {
           initial={isContact && !reduceMotion ? { opacity: 0, y: 8 } : undefined}
           whileInView={isContact ? { opacity: 1, y: 0 } : undefined}
           viewport={isContact ? { once: true, amount: 0.2 } : undefined}
-          transition={isContact ? { duration: reduceMotion ? 0 : 0.35, delay: reduceMotion ? 0 : index * 0.07 } : undefined}
-          whileHover={reduceMotion ? undefined : { scale: isContact ? 1 : 1.07, y: -2, ...(isContact ? { transition: { duration: 0.2, delay: 0 } } : {}) }}
+          transition={isContact ? { duration: reduceMotion ? 0 : 0.45, delay: reduceMotion ? 0 : index * 0.07 } : undefined}
+          whileHover={reduceMotion ? undefined : { scale: isContact ? 1 : 1.03, y: -2, transition: { duration: 0.2, delay: 0 } }}
           whileTap={reduceMotion ? undefined : { scale: isContact ? 0.99 : 0.97 }}>
           {isContact ? (
             <>
