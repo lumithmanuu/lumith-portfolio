@@ -154,7 +154,7 @@ button, a { touch-action: manipulation; }
   .hero-layout { gap: 28px; }
   .hero-section { padding-inline: 40px; }
   .hero-name { font-size: 60px; }
-  .desktop-navigation { gap: 22px; margin-right: 0; }
+  .desktop-navigation { gap: 16px; margin-right: 0; }
 }
 
 @media (max-width: 959px) {

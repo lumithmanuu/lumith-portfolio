@@ -7,7 +7,8 @@ const navigation = [
   ['About', '#about'],
   ['Skills', '#skills'],
   ['Projects', '#projects'],
-  ['Journey', '#journey'],
+  ['Education', '#education'],
+  ['Leadership', '#leadership'],
   ['Contact', '#contact'],
 ] as const;
 
@@ -95,7 +96,12 @@ export default function Navbar() {
         transition={{ duration: reduceMotion ? 0 : 0.2 }}>
         <div className="mobile-navigation-inner">
           {navigation.map(([label, href]) => (
-            <a className="nav-link" key={href} href={href} aria-current={activeSection === href ? 'location' : undefined} onClick={() => setIsOpen(false)}>{label}</a>
+            <a className="nav-link" key={href} href={href} aria-current={activeSection === href ? 'location' : undefined}
+              onClick={() => {
+                setIsOpen(false);
+                // Scroll after closing makes the link inert, preserving mobile anchor navigation.
+                requestAnimationFrame(() => document.querySelector(href)?.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' }));
+              }}>{label}</a>
           ))}
           {cvLink}
         </div>
