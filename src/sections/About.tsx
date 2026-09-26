@@ -71,7 +71,7 @@ export default function About() {
                 I enjoy turning real-world problems into practical software solutions. Through individual and team-based projects, I have gained hands-on experience working across frontend development, backend services, databases, and collaborative software development.
               </p>
               <p>
-                Alongside my degree, I continue to expand my technical knowledge through additional learning in AI and machine learning, while keeping software engineering and full-stack development as my primary career focus.
+                Alongside my degree, I continue to broaden my technical knowledge through additional learning in AI and machine learning, while keeping software engineering and full-stack development as my primary career focus.
               </p>
             </motion.div>
 
