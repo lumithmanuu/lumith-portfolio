@@ -1,7 +1,7 @@
 export type SkillCategory = {
-  id: 'languages' | 'frontend' | 'backend' | 'databases' | 'tools';
+  id: 'languages' | 'frontend' | 'backend' | 'databases' | 'tools' | 'ai-ml';
   title: string;
-  technologies: { name: string; initials: string }[];
+  technologies: { name: string; icon: string }[];
 };
 
 export const skills: SkillCategory[] = [
@@ -9,46 +9,58 @@ export const skills: SkillCategory[] = [
     id: 'languages',
     title: 'Languages',
     technologies: [
-      { name: 'Java', initials: 'JAVA' },
-      { name: 'C', initials: 'C' },
-      { name: 'JavaScript', initials: 'JS' },
-      { name: 'TypeScript', initials: 'TS' },
-      { name: 'Python', initials: 'PY' },
+      { name: 'Java', icon: 'java' },
+      { name: 'C', icon: 'c' },
+      { name: 'JavaScript', icon: 'javascript' },
+      { name: 'TypeScript', icon: 'typescript' },
+      { name: 'Python', icon: 'python' },
     ],
   },
   {
     id: 'frontend',
     title: 'Frontend',
     technologies: [
-      { name: 'React.js', initials: 'RE' },
-      { name: 'HTML5', initials: 'H5' },
-      { name: 'Tailwind CSS', initials: 'TW' },
-      { name: 'Bootstrap', initials: 'BS' },
+      { name: 'React.js', icon: 'react' },
+      { name: 'HTML5', icon: 'html5' },
+      { name: 'Tailwind CSS', icon: 'tailwindcss' },
+      { name: 'Bootstrap', icon: 'bootstrap' },
     ],
   },
   {
     id: 'backend',
     title: 'Backend',
-    technologies: [{ name: 'NestJS', initials: 'N' }],
+    technologies: [{ name: 'NestJS', icon: 'nestjs' }],
   },
   {
     id: 'databases',
     title: 'Databases',
     technologies: [
-      { name: 'MySQL', initials: 'SQL' },
-      { name: 'PostgreSQL', initials: 'PG' },
-      { name: 'MongoDB', initials: 'MDB' },
-      { name: 'Firebase', initials: 'FB' },
+      { name: 'MySQL', icon: 'mysql' },
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'MongoDB', icon: 'mongodb' },
+      { name: 'Firebase', icon: 'firebase' },
     ],
   },
   {
     id: 'tools',
     title: 'Tools',
     technologies: [
-      { name: 'Git', initials: 'GIT' },
-      { name: 'GitHub', initials: 'GH' },
-      { name: 'Postman', initials: 'PM' },
-      { name: 'Figma', initials: 'FIG' },
+      { name: 'Git', icon: 'git' },
+      { name: 'GitHub', icon: 'github' },
+      { name: 'Postman', icon: 'postman' },
+      { name: 'Figma', icon: 'figma' },
+    ],
+  },
+  {
+    id: 'ai-ml',
+    title: 'AI / ML',
+    technologies: [
+      { name: 'Pandas', icon: 'pandas' },
+      { name: 'NumPy', icon: 'numpy' },
+      { name: 'scikit-learn', icon: 'scikitlearn' },
+      { name: 'Matplotlib', icon: 'matplotlib' },
+      { name: 'Seaborn', icon: 'seaborn' },
+      { name: 'Jupyter', icon: 'jupyter' },
     ],
   },
 ];
