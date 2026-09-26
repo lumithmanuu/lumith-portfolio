@@ -1,4 +1,4 @@
-import { Mail } from 'lucide-react';
+import { ArrowUpRight, Mail } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 
 // The installed Lucide version does not include brand icons.
@@ -11,22 +11,43 @@ function GitHubIcon() {
 }
 
 const links = [
-  { label: 'GitHub (opens in a new tab)', href: 'https://github.com/lumithmanuu', icon: <GitHubIcon />, external: true },
-  { label: 'LinkedIn (opens in a new tab)', href: 'https://www.linkedin.com/in/lumith-manujaya-681776300/', icon: <span className="linkedin-icon" aria-hidden="true">in</span>, external: true },
-  { label: 'Email Lumith Manujaya', href: 'mailto:lumithmanuu@gmail.com', icon: <Mail size={19} strokeWidth={1.7} aria-hidden="true" />, external: false },
+  { title: 'GitHub', value: '@lumithmanuu', label: 'GitHub (opens in a new tab)', href: 'https://github.com/lumithmanuu', icon: <GitHubIcon />, external: true },
+  { title: 'LinkedIn', value: 'Lumith Manujaya', label: 'LinkedIn (opens in a new tab)', href: 'https://www.linkedin.com/in/lumith-manujaya-681776300/', icon: <span className="linkedin-icon" aria-hidden="true">in</span>, external: true },
+  { title: 'Email', value: 'lumithmanuu@gmail.com', label: 'Email Lumith Manujaya', href: 'mailto:lumithmanuu@gmail.com', icon: <Mail size={19} strokeWidth={1.7} aria-hidden="true" />, external: false },
 ];
 
-export default function SocialLinks() {
+type SocialLinksProps = {
+  variant?: 'icons' | 'contact';
+};
+
+export default function SocialLinks({ variant = 'icons' }: SocialLinksProps) {
   const reduceMotion = useReducedMotion();
+  const isContact = variant === 'contact';
+  const orderedLinks = isContact ? [...links.filter((link) => !link.external), ...links.filter((link) => link.external)] : links;
 
   return (
-    <div className="social-links">
-      {links.map(({ label, href, icon, external }) => (
-        <motion.a key={href} href={href} className="social-link" aria-label={label} title={label}
+    <div className={isContact ? 'flex flex-col gap-3' : 'social-links'}>
+      {orderedLinks.map(({ title, value, label, href, icon, external }, index) => (
+        <motion.a key={href} href={href}
+          className={isContact ? 'group/contact flex min-w-0 items-center gap-3.5 rounded-xl border border-sky-300/[0.13] bg-[rgba(12,20,35,0.65)] p-4 backdrop-blur-md transition-[border-color,box-shadow] duration-200 hover:border-cyan-400/35 hover:shadow-[0_4px_24px_rgba(34,211,238,0.05)]' : 'social-link'}
+          aria-label={isContact ? `${title}: ${value}${external ? ' (opens in a new tab)' : ''}` : label} title={label}
           target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}
-          whileHover={reduceMotion ? undefined : { scale: 1.07, y: -2 }}
-          whileTap={reduceMotion ? undefined : { scale: 0.97 }}>
-          {icon}
+          initial={isContact && !reduceMotion ? { opacity: 0, y: 8 } : undefined}
+          whileInView={isContact ? { opacity: 1, y: 0 } : undefined}
+          viewport={isContact ? { once: true, amount: 0.2 } : undefined}
+          transition={isContact ? { duration: reduceMotion ? 0 : 0.35, delay: reduceMotion ? 0 : index * 0.07 } : undefined}
+          whileHover={reduceMotion ? undefined : { scale: isContact ? 1 : 1.07, y: -2, ...(isContact ? { transition: { duration: 0.2, delay: 0 } } : {}) }}
+          whileTap={reduceMotion ? undefined : { scale: isContact ? 0.99 : 0.97 }}>
+          {isContact ? (
+            <>
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-cyan-400/15 bg-cyan-400/[0.06] text-cyan-200" aria-hidden="true">{icon}</span>
+              <span className="min-w-0 flex-1">
+                <span className="mb-1 block text-[9px] font-medium tracking-[0.15em] text-slate-400 uppercase">{title}</span>
+                <span className="block text-[13px] leading-6 break-words text-slate-200">{value}</span>
+              </span>
+              <ArrowUpRight size={16} className="shrink-0 text-slate-500 transition-colors group-hover/contact:text-cyan-300" aria-hidden="true" />
+            </>
+          ) : icon}
         </motion.a>
       ))}
     </div>
