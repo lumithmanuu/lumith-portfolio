@@ -15,9 +15,7 @@ export default function App() {
       <main className="site-content">
         <Hero />
         <About />
-        <div id="skills">
-          <TechStack />
-        </div>
+        <TechStack />
         <Projects />
         <Journey />
         <Contact />
