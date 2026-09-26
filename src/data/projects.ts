@@ -1,3 +1,9 @@
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  supplementary?: boolean;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -11,9 +17,7 @@ export type Project = {
   technologies: string[];
   githubUrl?: string;
   liveDemoUrl?: string;
-  imageDirectory: string;
-  // Add an actual screenshot filename and meaningful alt text when available.
-  image?: { filename: string; alt: string };
+  images: ProjectImage[];
   visual: 'leaf' | 'credit' | 'hardware';
 };
 
@@ -40,7 +44,12 @@ export const projects: Project[] = [
     },
     technologies: ['React.js', 'NestJS', 'SQL Server'],
     githubUrl: 'https://github.com/lumithmanuu/Tea-leaf-supplier-s-management-system',
-    imageDirectory: '/images/projects/ceylon-leaf/',
+    images: [
+      { src: '/images/projects/ceylon-leaf/ceylon-dashboard.png', alt: 'Ceylon Leaf dashboard' },
+      { src: '/images/projects/ceylon-leaf/ceylon-suppliers.png', alt: 'Ceylon Leaf supplier management' },
+      { src: '/images/projects/ceylon-leaf/ceylon-reports.png', alt: 'Ceylon Leaf reports and payment analytics' },
+      { src: '/images/projects/ceylon-leaf/ceylon-quality-rating.png', alt: 'Ceylon Leaf grades and payment rates' },
+    ],
     visual: 'leaf',
   },
   {
@@ -67,7 +76,15 @@ export const projects: Project[] = [
     technologies: ['React.js', 'TypeScript', 'JavaScript', 'NestJS', 'Firebase', 'React Native'],
     githubUrl: 'https://github.com/NishenAMJ/Smart_Credit_Plus',
     liveDemoUrl: 'https://smart-credit-api.vercel.app',
-    imageDirectory: '/images/projects/smart-credit/',
+    images: [
+      { src: '/images/projects/smart-credit/smart-credit-dashboard.png', alt: 'Smart Credit Plus admin dashboard' },
+      { src: '/images/projects/smart-credit/smart-credit-kyc.png', alt: 'Smart Credit Plus KYC review interface' },
+      { src: '/images/projects/smart-credit/smart-credit-users.png', alt: 'Smart Credit Plus user management' },
+      { src: '/images/projects/smart-credit/smart-credit-disputes.png', alt: 'Smart Credit Plus dispute management' },
+      { src: '/images/projects/smart-credit/smart-credit-analytics.png', alt: 'Smart Credit Plus analytics dashboard' },
+      { src: '/images/projects/smart-credit/smart-credit-lender-ads.png', alt: 'Smart Credit Plus lender advertisement management', supplementary: true },
+      { src: '/images/projects/smart-credit/smart-credit-ad-boosts.png', alt: 'Smart Credit Plus ad boost management', supplementary: true },
+    ],
     visual: 'credit',
   },
   {
@@ -79,7 +96,10 @@ export const projects: Project[] = [
     description: 'A sensor-driven Arduino Mega 2560 animatronic system that responds to proximity, sound, and touch using coordinated motor movement and synchronized audio.',
     contribution: 'Designed and implemented the NEMA 17 chest movement mechanism and touch-sensor module, including stepper-driver integration, Arduino motor-control logic, testing, debugging, and structural alignment.',
     technologies: ['C++', 'Arduino', 'Microcontrollers', 'Sensors', 'Stepper Motors'],
-    imageDirectory: '/images/projects/grim-reaper/',
+    images: [
+      { src: '/images/projects/grim-reaper/grim-reaper-active.png', alt: 'Grim Reaper animatronic illuminated during operation' },
+      { src: '/images/projects/grim-reaper/grim-reaper-setup.png', alt: 'Grim Reaper animatronic physical setup' },
+    ],
     visual: 'hardware',
   },
 ];

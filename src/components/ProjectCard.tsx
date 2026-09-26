@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, ChevronDown, Cpu, ExternalLink, Landmark, Leaf, Users } from 'lucide-react';
 import type { Project } from '../data/projects';
 
@@ -25,13 +25,91 @@ function GitHubIcon() {
   );
 }
 
+function ProjectGallery({ project }: { project: Project }) {
+  const reduceMotion = useReducedMotion();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [failedImages, setFailedImages] = useState<Set<string>>(() => new Set());
+  const selectedImage = project.images[selectedIndex] ?? project.images[0];
+  if (!selectedImage) return null;
+
+  const groups = [
+    { label: 'Featured views', supplementary: false },
+    { label: 'Additional views', supplementary: true },
+  ];
+  const hasSupplementaryImages = project.images.some((image) => image.supplementary);
+
+  return (
+    <figure className="w-full min-w-0" aria-label={`${project.title} image gallery`}>
+      <div id={`gallery-${project.id}`} className={`relative overflow-hidden rounded-lg border border-sky-200/15 bg-[#050810]/85 shadow-xl ${project.visual === 'hardware' ? 'aspect-[4/3]' : 'aspect-[16/10]'}`}>
+        <AnimatePresence mode="wait" initial={false}>
+          {failedImages.has(selectedImage.src) ? (
+            <motion.p key={`error-${selectedImage.src}`} className="absolute inset-0 flex items-center justify-center p-6 text-center text-xs text-slate-400"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduceMotion ? 0 : 0.15 }}>
+              This image could not load. Choose another thumbnail or open the full-size image.
+            </motion.p>
+          ) : (
+            <motion.img
+              key={selectedImage.src}
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="absolute inset-0 h-full w-full object-contain"
+              loading="lazy"
+              decoding="async"
+              initial={{ opacity: reduceMotion ? 1 : 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: reduceMotion ? 1 : 0 }}
+              transition={{ duration: reduceMotion ? 0 : 0.16 }}
+              onError={() => setFailedImages((previous) => new Set(previous).add(selectedImage.src))}
+            />
+          )}
+        </AnimatePresence>
+      </div>
+
+      <figcaption className="mt-3 flex items-start gap-3 text-[11px] leading-5 text-slate-300" aria-live="polite" aria-atomic="true">
+        <span className="shrink-0 font-mono text-[10px] text-cyan-200/70">{String(project.images.indexOf(selectedImage) + 1).padStart(2, '0')} / {String(project.images.length).padStart(2, '0')}</span>
+        <span>{selectedImage.alt}</span>
+      </figcaption>
+
+      {groups.map(({ label, supplementary }) => {
+        const images = project.images.map((image, imageIndex) => ({ ...image, imageIndex }))
+          .filter((image) => Boolean(image.supplementary) === supplementary);
+        if (!images.length) return null;
+
+        return (
+          <div key={label} className={supplementary ? 'mt-3 border-t border-sky-200/10 pt-3' : 'mt-4'}>
+            {hasSupplementaryImages && <p className={`mb-2 text-[9px] font-medium tracking-[0.12em] uppercase ${supplementary ? 'text-slate-400' : 'text-cyan-200/80'}`}>{label}</p>}
+            <ul className="-mx-1 flex gap-2 overflow-x-auto overscroll-x-contain p-1" aria-label={`${project.title}: ${label.toLowerCase()}`} role="list">
+              {images.map((image) => {
+                const isSelected = selectedImage.src === image.src;
+                return (
+                  <li key={image.src} className="shrink-0">
+                    <button type="button" onClick={() => setSelectedIndex(image.imageIndex)}
+                      aria-label={`Show ${image.alt}`} aria-pressed={isSelected} aria-controls={`gallery-${project.id}`} title={image.alt}
+                      className={`block overflow-hidden rounded-md border-2 bg-[#050810] p-0.5 transition-[border-color,box-shadow,opacity] duration-200 focus-visible:outline-offset-2 ${supplementary ? 'h-11 w-14' : 'h-14 w-20'} ${isSelected ? 'border-cyan-300 opacity-100 shadow-[0_0_12px_rgba(34,211,238,0.15)]' : `border-slate-400/20 hover:border-cyan-300/60 hover:opacity-100 ${supplementary ? 'opacity-70' : 'opacity-85'}`}`}>
+                      <img src={image.src} alt="" loading="lazy" decoding="async" className="h-full w-full rounded-sm object-contain" />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
+
+      <a href={selectedImage.src} target="_blank" rel="noopener noreferrer"
+        aria-label={`Open ${selectedImage.alt} at full size (opens in a new tab)`}
+        className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-md text-[11px] text-slate-400 transition-colors hover:text-cyan-200">
+        <ExternalLink size={13} aria-hidden="true" />View full size
+      </a>
+    </figure>
+  );
+}
+
 export default function ProjectCard({ project, index, reverse = false }: ProjectCardProps) {
   const reduceMotion = useReducedMotion();
-  const [failedImage, setFailedImage] = useState<string | null>(null);
   const number = String(index + 1).padStart(2, '0');
   const VisualIcon = visualIcons[project.visual];
-  const imageSrc = project.image ? `${project.imageDirectory}${project.image.filename}` : undefined;
-  const hasImage = imageSrc && imageSrc !== failedImage;
+  const hasImages = project.images.length > 0;
   const buttonClass = 'inline-flex min-h-11 items-center justify-center gap-2.5 rounded-lg border px-4 text-xs font-semibold transition-[border-color,background-color,box-shadow] duration-200';
 
   return (
@@ -47,9 +125,9 @@ export default function ProjectCard({ project, index, reverse = false }: Project
       <div className={`relative min-w-0 overflow-hidden rounded-t-2xl border-b border-sky-300/10 lg:rounded-t-none lg:border-b-0 ${reverse ? 'lg:order-2 lg:rounded-r-2xl lg:border-l' : 'lg:rounded-l-2xl lg:border-r'} ${project.featured ? 'min-h-[280px] sm:min-h-[340px]' : 'min-h-[230px]'} ${visualBackgrounds[project.visual]}`}>
         <div className="absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(125,211,252,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,0.3)_1px,transparent_1px)] [background-size:36px_36px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_85%)]" aria-hidden="true" />
         <div className="pointer-events-none absolute -top-12 left-0 size-56 rounded-full bg-cyan-400/[0.04] blur-3xl transition-transform duration-700 group-hover/project:translate-x-8" aria-hidden="true" />
-        <div className={`relative flex h-full items-center justify-center p-8 transition-transform duration-500 ${reduceMotion ? '' : 'group-hover/project:scale-[1.02]'} ${project.featured ? 'min-h-[280px] sm:min-h-[340px]' : 'min-h-[230px]'}`}>
-          {hasImage && project.image ? (
-            <img className="h-auto max-h-[600px] w-full rounded-lg object-contain shadow-2xl" src={imageSrc} alt={project.image.alt} loading="lazy" decoding="async" onError={() => setFailedImage(imageSrc)} />
+        <div className={`relative flex h-full min-w-0 items-center justify-center ${hasImages ? 'px-3 pt-14 pb-4 sm:px-5 sm:pb-5' : `p-8 transition-transform duration-500 ${reduceMotion ? '' : 'group-hover/project:scale-[1.02]'}`} ${project.featured ? 'min-h-[280px] sm:min-h-[340px]' : 'min-h-[230px]'}`}>
+          {hasImages ? (
+            <ProjectGallery project={project} />
           ) : (
             <div className="relative max-w-xs py-5 text-center" role="img" aria-label={`${project.title} — decorative project preview`}>
               <div className="relative mx-auto mb-7 flex size-24 items-center justify-center rounded-3xl border border-cyan-300/20 bg-sky-300/[0.04] text-cyan-200 shadow-[0_0_50px_rgba(34,211,238,0.07)]">
